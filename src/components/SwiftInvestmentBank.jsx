@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 
 /* ─────────────────────────────────────────────
    THEME
@@ -56,8 +56,6 @@ const INIT_TXN = [
 
 const fmtUSD = (n) => Math.abs(n).toLocaleString("en-US",{style:"currency",currency:"USD"});
 const fmtDate = () => new Date().toLocaleString("en-US",{dateStyle:"medium",timeStyle:"short"});
-
-function genOTP() { return Math.floor(100000+Math.random()*900000).toString(); }
 
 const CAT_ICO = {
   "Wire Transfer":"⚡","Travel":"✈️","Investment":"📊","Subscriptions":"📋",
@@ -687,7 +685,7 @@ export default function SwiftInvestmentBank() {
                   <div style={{display:"flex",gap:8,marginBottom:18}}>
                     {[5000,25000,100000,500000].map(v=>(
                       <button key={v} onClick={()=>setTxAmt(String(v))}
-                        style={{flex:1,padding:"9px 4px",border:`1.5px solid ${txAmt==v?T.navyMid:T.border}`,borderRadius:9,background:txAmt==v?"#f0f4ff":"#fff",color:txAmt==v?T.navyMid:T.textSm,fontSize:10,cursor:"pointer",fontWeight:txAmt==v?700:400,fontFamily:"'DM Sans',sans-serif",transition:"all .15s"}}>
+                        style={{flex:1,padding:"9px 4px",border:`1.5px solid ${txAmt===v?T.navyMid:T.border}`,borderRadius:9,background:txAmt===v?"#f0f4ff":"#fff",color:txAmt===v?T.navyMid:T.textSm,fontSize:10,cursor:"pointer",fontWeight:txAmt===v?700:400,fontFamily:"'DM Sans',sans-serif",transition:"all .15s"}}>
                         ${v>=1000000?v/1000000+"M":v/1000+"K"}
                       </button>
                     ))}
